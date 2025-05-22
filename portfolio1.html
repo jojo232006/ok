@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #2d87b1, #488aa8);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 12px;
+  }
+
+  header {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+    border-bottom: 2px solid rgba(255 255 255 / 0.2);
+    padding-bottom: 12px;
+  }
+
+  .name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    user-select: none;
+    text-shadow: 1px 1px 10px rgba(255,255,255,0.25);
+  }
+
+  .logo {
+    width: 64px;
+    height: 64px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #828641;
+    font-weight: 700;
+    font-size: 2rem;
+    box-shadow: 0 0 25px #fff7;
+    user-select: none;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+
+  .logo:hover {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 0 40px #fff9;
+  }
+
+  main {
+    width: 100%;
+    max-width: 960px;
+    background: rgba(255 255 255 / 0.1);
+    padding: 30px 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  #center-image-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  #center-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 4px solid rgba(255 255 255 / 0.4);
+    transition: transform 0.4s ease;
+    cursor: default;
+  }
+
+  #center-image:hover {
+    transform: scale(1.06);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.75);
+  }
+
+  section {
+    width: 100%;
+  }
+
+  section h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+    border-left: 6px solid #fff;
+    padding-left: 14px;
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 7px rgba(255 255 255 / 0.45);
+  }
+
+  p, ul {
+    font-weight: 300;
+    line-height: 1.6;
+    font-size: 1.15rem;
+  }
+
+  ul.skills-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  ul.skills-list li {
+    background: rgba(255 255 255 / 0.2);
+    padding: 10px 20px;
+    border-radius: 28px;
+    font-weight: 600;
+    box-shadow: 0 4px 18px rgba(255 255 255 / 0.15);
+    cursor: default;
+    transition: background 0.3s ease;
+  }
+
+  ul.skills-list li:hover {
+    background: rgba(255 255 255 / 0.35);
+    box-shadow: 0 6px 25px rgba(255 255 255 / 0.45);
+  }
+
+  /* Carousel styles */
+  #projects-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(255 255 255 / 0.15);
+    padding: 20px 30px;
+    box-shadow: inset 0 0 20px rgba(255 255 255 / 0.1);
+  }
+
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
+
+  .project-card {
+    min-width: 280px;
+    flex: 0 0 auto;
+    background: rgba(255 255 255 / 0.3);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-right: 24px;
+    box-shadow: 0 6px 16px rgba(255 255 255 / 0.2);
+    color: #222;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: box-shadow 0.3s ease;
+    cursor: grab;
+  }
+
+  .project-card:last-child {
+    margin-right: 0;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 10px 40px rgba(255 255 255 / 0.45);
+  }
+
+  .project-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #1f1f1f;
+    margin-bottom: 10px;
+  }
+
+  .project-description {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #333;
+    flex-grow: 1;
+  }
+
+  /* Carousel arrows */
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff8;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-button:hover {
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.3);
+  }
+
+  #prev-btn {
+    left: 12px;
+  }
+
+  #next-btn {
+    right: 12px;
+  }
+
+  /* Arrow icons */
+  .carousel-button svg {
+    width: 22px;
+    height: 22px;
+    fill: #853d94;
+  }
+
+  /* Contact link styles */
+  a {
+    color: #f5f4f7;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    margin-top: 48px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #ddd;
+    user-select: none;
+    width: 100%;
+    max-width: 960px;
+  }
+
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 14px;
+    }
+    main {
+      padding: 28px 20px;
+      gap: 36px;
+    }
+    ul.skills-list {
+      justify-content: center;
+    }
+    #center-image {
+      width: 140px;
+      height: 140px;
+    }
+    .project-card {
+      min-width: 240px;
+      margin-right: 16px;
+      padding: 16px 20px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    body {
+      padding: 18px 10px;
+    }
+    #center-image {
+      width: 110px;
+      height: 110px;
+    }
+    .name {
+      font-size: 2rem;
+    }
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .project-card {
+      min-width: 200px;
+      margin-right: 14px;
+      padding: 14px 18px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="name">KOUAKOUA jorben</div>
+    <div class="logo" aria-label="Logo de Jorben" title="Logo Jorben">J</div>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>À propos</h2>
+      <p>Je m'appelle Jorben, un jeune développeur passionné par le web et les technologies modernes. Je crée des applications web modernes, élégantes et performantes avec un souci du détail et de la qualité.</p>
+    </section>
+
+    <section id="center-image-container">
+      <img src="F.jpg" alt="Portrait de Jorben" id="center-image" />
+    </section>
+
+    <section id="skills">
+      <h2>Compétences</h2>
+      <ul class="skills-list">
+        <li>JavaScript (ES6+)</li>
+        <li>HTML5 &amp; CSS3</li>
+        <li>React</li>
+        <li>Node.js</li>
+        <li>Git &amp; GitHub</li>
+        <li>Responsive Design</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projets</h2>
+      <div id="projects-carousel" aria-label="Carrousel des projets de Jorben">
+        <button class="carousel-button" id="prev-btn" aria-label="Projet précédent">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <div class="carousel-wrapper" id="carousel-wrapper">
+          <div class="project-card" tabindex="0">
+            <div class="project-title">Portfolio personnel</div>
+            <div class="project-description">Un site web responsive présentant mes projets et compétences.</div>
+          </div>
+          <div class="project-card" tabindex="0">
+            <div class="project-title">Todo App</div>
+            <div class="project-description">Application web pour gérer des tâches avec interface simple et intuitive.</div>
+          </div>
+          <div class="project-card" tabindex="0">
+            <div class="project-title">Blog Tech</div>
+            <div class="project-description">Un blog pour partager des articles sur les nouvelles technologies.</div>
+          </div>
+          <div class="project-card" tabindex="0">
+            <div class="project-title">Weather App</div>
+            <div class="project-description">Application météo utilisant une API publique pour infos en temps réel.</div>
+          </div>
+        </div>
+        <button class="carousel-button" id="next-btn" aria-label="Projet suivant">
+          <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Vous pouvez me contacter par email à <a href="mailto:jorben@example.com">jorben@example.com</a> ou via <a href="https://github.com/jorben" target="_blank" rel="noopener noreferrer">mon GitHub</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 Jorben - Tous droits réservés +242 055524818
+  </footer>
+  
+  <script>
+    (function(){
+      const carouselWrapper = document.getElementById('carousel-wrapper');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const cards = Array.from(carouselWrapper.children);
+      const cardWidth = cards[0].offsetWidth + 24; // card width + margin-right
+      let index = 0;
+
+      function updateCarousel() {
+        const maxIndex = cards.length - Math.floor(carouselWrapper.parentElement.offsetWidth / cardWidth);
+        if (index < 0) index = maxIndex >= 0 ? maxIndex : 0;
+        if (index > maxIndex) index = 0;
+        const translateX = -(cardWidth * index);
+        carouselWrapper.style.transform = `translateX(${translateX}px)`;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        index--;
+        updateCarousel();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        index++;
+        updateCarousel();
+      });
+
+      // Handle window resize: recalc maxIndex and reset index if necessary
+      window.addEventListener('resize', () => {
+        index = 0;
+        updateCarousel();
+      });
+
+      updateCarousel();
+    })();
+  </script>
+</body>
+</html>
